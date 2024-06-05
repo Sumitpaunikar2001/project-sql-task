@@ -1,0 +1,211 @@
+CREATE TABLE HaldiramProduct (
+  product_id SERIAL PRIMARY KEY,
+  product_name VARCHAR(255) NOT NULL,
+  category1 VARCHAR(50) NOT NULL,
+  category2 VARCHAR(50) NOT NULL,
+  category3 VARCHAR(50) NOT NULL,
+  category4 VARCHAR(50) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  weight DECIMAL(5,2) NOT NULL,
+  stock INT NOT NULL,
+  discount INT
+ )
+ INSERT INTO HaldiramProduct (product_name, category1, category2, category3, category4, price, weight, stock, discount)
+values
+     ('Shahi Sev', 'Snacks', 'Savoury', 'Extruded', 'Gram Flour', 129.50, 200.00, 50, 10),
+  ('Kaju Katli', 'Sweets', 'Indian Mithai', 'Cashew Based', 'Desserts', 245.00, 250.00, 30,10),
+  ('Pure Butter Cookies', 'Biscuits', 'Cookies', 'Tea Time', 'Bakery', 159.00, 400.00, 75, 15 ),
+  ('Nagpur Bhujia', 'Snacks', 'Savoury', 'Deep Fried', 'Lentil Snacks', 99.90, 300.00, 100, 0 ),
+  ('Aloo Bhujia', 'Snacks', 'Savoury', 'Deep Fried', 'Potato Snacks', 85.00, 250.00, 80, 0 ),
+  ('Sever Sev', 'Snacks', 'Savoury', 'Extruded', 'Gram Flour', 115.00, 200.00, 60, 0),
+  ('Kesar Badam Milk', 'Beverages', 'Dairy', 'Flavored Milk', 'Ready to Drink', 75.00, 200.00, 40, 0 ),
+  ('Mango Lassi', 'Beverages', 'Yogurt Based', 'Drinks', 'Ready to Drink', 69.00, 200.00, 25, 0 ),
+  ('Instant Kheer Mix', 'Mixes', 'Dessert Mixes', 'Ready to Cook', 'Indian Sweets', 139.00, 400.00, 45, 0 ),
+  ('Rajma Masala', 'Ready to Eat', 'Curries', 'Ready to Heat', 'Vegetarian', 199.00, 400.00, 20, 0 ),
+  ('Chole Bhature', 'Ready to Eat', 'Combo Meals', 'Ready to Heat', 'Vegetarian', 249.00, 500.00, 15, 0 ),
+  ('Samosa Patties (Frozen)', 'Frozen Food', 'Snacks', 'Ready to Fry', 'Savoury', 145.00, 500.00, 60, 0 ),
+  ('Mathri (Cookies)', 'Snacks', 'Cookies', 'Tea Time', 'Bakery', 135.00, 400.00, 85, 0 ),
+  ('Jeera Aloo (Ready to Eat)', 'Ready to Eat', 'Side Dishes', 'Ready to Heat', 'Vegetarian', 89.00, 200.00, 35, 0),
+  ('Peda (Sweet)', 'Sweets', 'Indian Mithai', 'Milk Based', 'Desserts', 32.00, 50.00, 100, 0),
+  ('Gazark Halwa', 'Sweets', 'Indian Mithai', 'Carrot Based', 'Desserts', 199.00, 250.00, 40, 0 ),
+  ('Moong Dal Halwa', 'Sweets', 'Indian Mithai', 'Lentil Based', 'Desserts', 185.00, 250.00, 35, 0 ),
+  ('Cashew Nut Barfi', 'Sweets', 'Indian Mithai', 'Cashew Based', 'Desserts', 295.00, 200.00, 20, 0)
+  
+  select * from HaldiramProduct
+
+
+
+CREATE TABLE customer (
+   cus_id SERIAL PRIMARY KEY,
+   customer_name VARCHAR(50),
+   gender CHAR(1),
+   city VARCHAR(50),
+   state VARCHAR(50),
+   pincode VARCHAR(50),
+   cs_id int,
+   FOREIGN KEY (cs_id) REFERENCES HaldiramProduct(product_id)
+   )
+   
+  INSERT INTO customer (customer_name, gender, city, state, pincode, cus_id) VALUES
+  ('John Doe', 'M', 'New York', 'NY', '10001', 1),
+  ('Jane Smith', 'F', 'Los Angeles', 'CA', '90001', 2),
+  ('Michael Johnson', 'M', 'Chicago', 'IL', '60601', 3),
+  ('Emily Davis', 'F', 'Houston', 'TX', '77001', 4),
+  ('William Brown', 'M', 'Phoenix', 'AZ', '85001', 5),
+  ('Mary Wilson', 'F', 'Philadelphia', 'PA', '19101', 6),
+  ('James Martinez', 'M', 'San Antonio', 'TX', '78201', 7),
+  ('Sarah Anderson', 'F', 'San Diego', 'CA', '92101', 8),
+  ('Robert Taylor', 'M', 'Dallas', 'TX', '75201', 9),
+  ('Jennifer Thomas', 'F', 'San Jose', 'CA', '95101', 10),
+  ('David Lee', 'M', 'Austin', 'TX', '73301', 11),
+  ('Lisa Harris', 'F', 'Jacksonville', 'FL', '32201', 12),
+  ('Daniel Clark', 'M', 'Fort Worth', 'TX', '76101', 13),
+  ('Karen Lewis', 'F', 'Columbus', 'OH', '43201', 14),
+  ('Richard Robinson', 'M', 'Charlotte', 'NC', '28201', 15),
+  ('Patricia Walker', 'F', 'San Francisco', 'CA', '94101', 16),
+  ('Matthew Hall', 'M', 'Indianapolis', 'IN', '46201', 17),
+  ('Linda Young', 'F', 'Seattle', 'WA', '98101', 18),
+  ('Christopher Allen', 'M', 'Denver', 'CO', '80201', 19),
+  ('Amanda King', 'F', 'Washington', 'DC', '20001', 20)
+  
+  select * from customer
+  
+
+
+CREATE TABLE company (
+  com_id SERIAL PRIMARY KEY,
+  haldiram_manufacture_country VARCHAR(50),
+   haldiram_maker VARCHAR(50),
+  product_id int,
+   FOREIGN KEY (product_id) REFERENCES HaldiramProduct(product_id)
+  )
+  
+  INSERT INTO company (haldiram_manufacture_country, haldiram_maker, product_id) VALUES
+  ('India', 'Haldiram', 1),
+  ('India', 'Haldiram', 2),
+  ('India', 'Haldiram', 3),
+  ('India', 'Haldiram', 4),
+  ('India', 'Haldiram', 5)
+  
+  select * from company
+  
+  select * from HaldiramProduct
+  select * from customer
+  select * from company
+  
+  select category1, category2, category3, category3, price, weight, stock, discount from HaldiramProduct
+  
+  select gender, city, state, pincode from customer
+  
+ 1. ---using group, having, order by
+  select category1, sum(price) as "sumOfprice" from HaldiramProduct
+  group by category1
+  
+ select category1, sum(price) as "sumOfsellingprice" from HaldiramProduct
+  group by category1 
+  order by sum(price)
+  
+ select category1, sum(price) as "sumOfsellingprice" from HaldiramProduct
+ group by category1 
+ having sum(price)>200
+ order by sum(price)
+ 
+ 2.---using join,having,group by
+ 
+ select * from HaldiramProduct
+ inner join customer 
+ on HaldiramProduct.product_id = customer.cus_id
+ group by category2
+ having sum(price)>25
+ 
+ 3.------window function
+ 
+ select product_name,category1,sum(price)
+ over()
+ as sum_window,price,stock,discount
+ from HaldiramProduct
+ 
+  select product_name,category1,avg(price)
+ over()
+ as avg_window,price,stock,discount
+ from HaldiramProduct
+ 
+ select product_name,category2,avg(price)
+ over(partition by category2
+ )
+ as avg_window,price,discount,stock
+ from HaldiramProduct
+ 
+ 4.---subQuery
+ select * from HaldiramProduct
+ 
+ select * from HaldiramProduct where weight>450
+ select * from HaldiramProduct where stock = '100'
+ 
+select * from customer as c
+left join HaldiramProduct as a
+on c.cus_id = a.product_id
+ 
+ 5---join with where
+ 
+ select * from customer as c
+ left join HaldiramProduct as a
+ on c.cus_id = a.product_id
+ where
+ category2 = 'Savoury'
+ and 
+ gender = 'M'
+ 
+ select * from customer as c
+ left join HaldiramProduct as a
+ on c.cus_id = a.product_id
+ where
+ category2 = 'Indian Mithai'
+ and 
+ gender = 'F'
+ 
+ 
+6-----3 table join
+
+select * from HaldiramProduct as a
+inner join customer as c
+on a.product_id = c.cus_id
+inner join company as m
+on a.product_id = m.com_id
+
+
+7)--- Create table query
+
+ CREATE TABLE HaldiramProduct (
+  product_id SERIAL PRIMARY KEY,
+  product_name VARCHAR(255) NOT NULL,
+  category1 VARCHAR(50) NOT NULL,
+  category2 VARCHAR(50) NOT NULL,
+  category3 VARCHAR(50) NOT NULL,
+  category4 VARCHAR(50) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  weight DECIMAL(5,2) NOT NULL,
+  stock INT NOT NULL,
+  discount INT
+ )
+ 
+ CREATE TABLE customer (
+   cus_id SERIAL PRIMARY KEY,
+   customer_name VARCHAR(50),
+   gender CHAR(1),
+   city VARCHAR(50),
+   state VARCHAR(50),
+   pincode VARCHAR(50),
+   cs_id int,
+   FOREIGN KEY (cs_id) REFERENCES HaldiramProduct(product_id)
+ )
+ 
+ CREATE TABLE company (
+  com_id SERIAL PRIMARY KEY,
+  haldiram_manufacture_country VARCHAR(50),
+   haldiram_maker VARCHAR(50),
+  product_id int,
+   FOREIGN KEY (product_id) REFERENCES HaldiramProduct(product_id)
+  )
+  
+ 
